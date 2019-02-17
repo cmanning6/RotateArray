@@ -1,3 +1,8 @@
+// Abraham Aldana
+// Chad Manning
+// CMPS 3390 - HW03
+// RotateArray.java
+
 /**
  * TODO make sure to put names
  */
@@ -5,30 +10,29 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class RotateArray {
-
     /*
-     *Prints the command menu 
+     *Prints the command menu
      */
     public static void printMenu() {
-        System.out.print("		======================== CS 3990 Assignment 1 ===============\n" + 
-                "		G/g:   Ask for a N, and generate N X N array of integers and\n" + 
-                "               fill the array with random integers 3 digits or say\n" + 
-                "               between 100 and 999. \n" + 
-                "\n" + 
-                "		S/s/ : Display the array in N columns and N rows.\n" + 
-                "                       ascending order.\n" + 
-                "\n" + 
-                "		V/v/ : Rotate each of rechtagles circle one position.\n" + 
-                "\n" + 
-                "		--------------------------------------------------\n" + 
-                "		H/h/?: Display this menu.\n" + 
-                "		E/e  : Exit\n" + 
+        System.out.print("		======================== CS 3390 Assignment 1 ===============\n" +
+                "		G/g:   Ask for a N, and generate N X N array of integers and\n" +
+                "               fill the array with random integers 3 digits or say\n" +
+                "               between 100 and 999. \n" +
+                "\n" +
+                "		S/s/ : Display the array in N columns and N rows.\n" +
+                "                       ascending order.\n" +
+                "\n" +
+                "		V/v/ : Rotate each of rechtagles circle one position.\n" +
+                "\n" +
+                "		--------------------------------------------------\n" +
+                "		H/h/?: Display this menu.\n" +
+                "		E/e  : Exit\n" +
                 "		==============================================================\n");
     }
     /*
      * Generates and fills a 2d array
      * @param size desired size of 2d array
-     * @return arr address to 2d array of desired size 
+     * @return arr address to 2d array of desired size
      */
     public static char[][] generateArray(){
         char [][] arr = new char[4][4];
@@ -50,26 +54,23 @@ public class RotateArray {
 
     /*
      * prints contents of array
-     * 
+     *
      * @param arr address of 2d array
      */
     public static void printArr(char[][] arr) {
         for (int row = 0; row < arr.length; ++row) {
-            try {
-                System.out.print("\t\t");
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e){}
+            System.out.print("\t\t\t\t");
             for (int col = 0; col < arr.length; ++col) {
+
                 System.out.printf("%3c ", arr[row][col]);
             }
-            System.out.println("");
+            System.out.println("\n");
         }
-        System.out.println();
     }
 
     /*
      * Rotate array in clockwise pattern
-     * 
+     *
      * @param arr 2d array to be rotated
      */
     public static void rotArray(char[][] arr) {
@@ -94,16 +95,17 @@ public class RotateArray {
                 arr[sRow][eCol-i] =  arr[sRow][eCol-i-1];
             }
             arr[sRow][sCol+1] = temp;
-            printArr(arr);
 
             sRow = sCol += 1;
             eRow = eCol -= 1;
         }
+        printArr(arr);
     }
 
     public static void main(String[] args) {
         char array[][] = null;
         char c = 'c';
+        boolean loop = true;
         Scanner scanner = new Scanner(System.in);
 
         while (c != 'e') {
@@ -118,7 +120,13 @@ public class RotateArray {
                     break;
                 case 's':
                 case 'S':
-                    rotArray(array);
+                    while(loop == true){
+                        System.out.printf("\n");
+                        rotArray(array);
+                        try {
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (InterruptedException e){}
+                    }
                     break;
                 case 'v':
                 case 'V':
